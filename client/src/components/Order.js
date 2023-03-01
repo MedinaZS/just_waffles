@@ -144,10 +144,10 @@ const Order = ({ waffles, setWaffles }) => {
 
                         <h3 className='text-end'>Total {numberFormat(totalPrice)}</h3>
 
-                        <Row className='mb-3'>
+                        <Row className='my-3'>
                             <Col xs={12} md={6} className="mb-3">
                                 <div className='d-grid'>
-                                    <Button type='button' variant='primary' onClick={startOver}>START OVER</Button>
+                                    <Button type='button' variant='danger' onClick={startOver}>START OVER</Button>
                                 </div>
                             </Col>
                             <Col xs={12} md={6}>

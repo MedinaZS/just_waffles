@@ -23,7 +23,7 @@ export function getTokenFromLocalStorage() {
 // Obtener el usuario autenticado mediante el token guardado en local storage
 export async function getAuthenticatedUser() {
 
-    const defaultReturnUser = {user: null };
+    const defaultReturnUser = { user: null };
     try {
         // Obtener token de almacenamiento
         const token = getTokenFromLocalStorage();
@@ -34,12 +34,18 @@ export async function getAuthenticatedUser() {
         }
 
         // Si hay token hacer peticion a api para obtener user
-        const response = await axios.get(API_ROUTES.GET_USER);
+        const response = await axios.get(API_ROUTES.GET_USER, {withCredentials:true});
 
         return response.data;
     }
     catch (err) {
         console.log('getAuthenticatedUser, Something Went Wrong', err);
+
+
+        // Eliminar token de almacenamiento local
+        removeTokenFromLocalStorage();
+
+
         return defaultReturnUser;
     }
 }

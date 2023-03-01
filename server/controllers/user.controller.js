@@ -9,27 +9,52 @@ const orderController = require('../controllers/order.controller');
 //Register
 module.exports.registerUser = async (req, res) => {
 
+    // try {
+    //     // Crear el nuevo usuario
+    //     const newUser = await User.init().then(() => User.create(req.body));
 
-    try {
+    //     // Generar el token
+    //     const userToken = jwt.sign({ _id: newUser._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN })
 
-        
-        // Crear el nuevo usuario
-        const newUser = await User.init().then (() => User.create(req.body));
-        // Generar el token
-        const userToken = jwt.sign({ _id: newUser._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN })
+    //     // Contiene el token, mientras no se expire o no haga logout puede utilizar la app, httponly para que la cookie no sea desencriptada
+    //     // Nombre, token, clave secreta, tiempo de expiracion
+    //     res.status(201).cookie('userToken', userToken, JWT_SECRET, { httpOnly: true })
 
-        // Contiene el token, mientras no se expire o no haga logout puede utilizar la app, httponly para que la cookie no sea desencriptada
-        // Nombre, token, clave secreta, tiempo de expiracion
-        res.status(201).cookie('userToken', userToken, JWT_SECRET, { httpOnly: true })
+    //         // Enviar token por json para poder guardarlo en el frontend
+    //         .json({ user: newUser, token: userToken })
 
-            // Enviar token por json para poder guardarlo en el frontend
-            .json({ user: newUser, token: userToken })
+    //     console.log("Usertoken register succesfully", userToken);
+    // }
+    // catch (error) {
+    //     res.status(400).json(error);
+    // }
 
-        console.log("Usertoken register succesfully", userToken);
-    }
-    catch (error) {
-        res.status(400).json(error);
-    }
+    User.findOne({ email: req.body.email }) //find if email exits
+        .then(user => {
+
+            if (!user) {
+                // Crear el nuevo usuario
+                User.create(req.body)
+                    .then(newUser => {
+                        const userToken = jwt.sign({ _id: newUser._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+
+                        // Contiene el token, mientras no se expire o no haga logout puede utilizar la app, httponly para que la cookie no sea desencriptada
+                        // Nombre, token, clave secreta, tiempo de expiracion
+                        res.status(201).cookie('userToken', userToken, JWT_SECRET, { httpOnly: true })
+                            // Enviar token por json para poder guardarlo en el frontend
+                            .json({ user: newUser, token: userToken })
+
+                        console.log("Usertoken register succesfully", userToken);
+                    })
+                    .catch(error => res.status(400).json(error));
+            }else{
+                res.status(400).json({errors:{email:{message:"This email already exists"}}})
+            }
+
+        })
+        .catch(error => res.status(400).json(error));
+
+
 }
 
 //Login
@@ -67,8 +92,6 @@ module.exports.loginUser = async (req, res) => {
 module.exports.getUserWithToken = (req, res) => {
     const defaultReturnUser = { user: null };
 
- 
-
     try {
         const token = String(req?.headers?.authorization?.replace('Bearer ', ''));
         const decoded = jwt.verify(token, JWT_SECRET);
@@ -92,6 +115,7 @@ module.exports.getUserWithToken = (req, res) => {
 
     } catch (error) {
         console.log("Something went wrong (getOne token)", error);
+        // 
     }
 }
 

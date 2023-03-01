@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const Register = () => {
 
@@ -33,6 +34,10 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({})
+
+
+    const [passwordType, setPasswordType] = useState("password")
+    const [confirmType, setConfirmType] = useState("password")
 
 
 
@@ -61,22 +66,23 @@ const Register = () => {
 
     return (
 
-        <Container className='mt-3'>
+        <Container className='mt-5'>
             <Row className="justify-content-md-center">
-                <Col md={6}>
-                    <h2 className='text-center mb-3'>Register</h2>
+                <Col md={6} className='border rounded-5 py-3 px-5 shadow '>
+                    <h2 className='text-center'>Register</h2>
+                    <hr />
                     <Form onSubmit={onSubmitHandler} >
 
-                        <Row>
+                        <Row className='mb-3'>
                             <Col sm={12} md={6}>
-                                <Form.Group className='mb-3'>
+                                <Form.Group>
                                     <Form.Label>First Name:</Form.Label>
                                     <Form.Control type="text" placeholder='Enter first name' onChange={(e) => setFirstName(e.target.value)} />
                                     {errors.firstName && <p className='text-danger'> {errors.firstName.message}</p>}
                                 </Form.Group>
                             </Col>
                             <Col sm={12} md={6}>
-                                <Form.Group className='mb-3'>
+                                <Form.Group>
                                     <Form.Label>Last Name:</Form.Label>
                                     <Form.Control type="text" placeholder='Enter last name' onChange={(e) => setLastName(e.target.value)} />
                                     {errors.lastName && <p className='text-danger offset-md-4'> {errors.lastName.message}</p>}
@@ -110,13 +116,33 @@ const Register = () => {
 
                         <Form.Group className='mb-3'>
                             <Form.Label>Password:</Form.Label>
-                            <Form.Control type="password" placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} />
+                            <InputGroup>
+                                <Form.Control type={passwordType} placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} />
+                                <InputGroup.Text>
+                                    <span className="icon"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={() => { (passwordType === "text") ? setPasswordType("password") : setPasswordType("text") }}>
+
+                                        <i className={"bi bi-eye" + (passwordType === "text" ? '-slash' : '')}></i>
+                                    </span>
+                                </InputGroup.Text>
+                            </InputGroup>
                             {errors.password && <p className='text-danger'> {errors.password.message}</p>}
                         </Form.Group>
 
                         <Form.Group className='mb-3'>
                             <Form.Label>Confirm:</Form.Label>
-                            <Form.Control type="password" placeholder='Enter confirm password' onChange={(e) => setConfirmPassword(e.target.value)} />
+                            <InputGroup>
+                                <Form.Control type={confirmType}  placeholder='Enter confirm password' onChange={(e) => setConfirmPassword(e.target.value)} />
+                                <InputGroup.Text>
+                                    <span className="icon"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={() => { (confirmType === "text") ? setConfirmType("password") : setConfirmType("text") }}>
+
+                                        <i className={"bi bi-eye" + (confirmType === "text" ? '-slash' : '')}></i>
+                                    </span>
+                                </InputGroup.Text>
+                            </InputGroup>
                             {errors.confirmPassword && <p className='text-danger'> {errors.confirmPassword.message}</p>}
                         </Form.Group>
 

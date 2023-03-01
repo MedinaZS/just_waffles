@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getTokenFromLocalStorage, storeTokenInLocalStorage } from '../helpers/common';
 import { API_ROUTES, APP_ROUTES } from '../helpers/constants';
+import { setAuthToken } from '../helpers/setAuthToken';
 
 // Bootstrap
 import Button from 'react-bootstrap/Button';
@@ -10,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -27,6 +29,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({})
 
+    const [passwordType, setPasswordType] = useState("password")
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -39,8 +42,19 @@ const Login = () => {
                 // Guardar el token JWT que se pasa como respuesta en el almacenamiento local
                 storeTokenInLocalStorage(token);
 
-                // Navegar al home
+                setAuthToken(token);
+
+                // while (true) {
+                //     if (!getTokenFromLocalStorage()) {
+                //         console.log("No hay")
+                //         return true;
+                //     }else{
+                // console.log("Si hay")
                 navigate(APP_ROUTES.HOME);
+                //         return false;
+                //     }
+                // }
+
             })
             .catch(err => {
                 console.log(err);
@@ -52,10 +66,11 @@ const Login = () => {
 
         <Container className='mt-5'>
             <Row className="justify-content-md-center">
-                <Col md={6}>
-                    <h2 className='text-center mb-5'>Welcome Back!</h2>
+                <Col md={6} className='border rounded-5 p-5 shadow '>
+                    <h2 className='text-center'>Welcome Back!</h2>
+                    <hr />
                     <Form onSubmit={onSubmitHandler} >
-                        
+
                         <Form.Group className='mb-3'>
                             <Form.Label>Email:</Form.Label>
                             <Form.Control type="email" placeholder='Enter email' onChange={(e) => setEmail(e.target.value)} />
@@ -64,7 +79,17 @@ const Login = () => {
 
                         <Form.Group className='mb-3'>
                             <Form.Label>Password:</Form.Label>
-                            <Form.Control type="password" placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} />
+                            <InputGroup>
+                                <Form.Control type={passwordType} placeholder='Enter password' onChange={(e) => setPassword(e.target.value)} />
+                                <InputGroup.Text>
+                                    <span className="icon"
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={() => { (passwordType === "text") ? setPasswordType("password") : setPasswordType("text") }}>
+
+                                        <i className={"bi bi-eye" + (passwordType === "text" ? '-slash' : '')}></i>
+                                    </span>
+                                </InputGroup.Text>
+                            </InputGroup>
                         </Form.Group>
 
                         {errors.message ? <p className='text-danger text-center'> {errors.message}</p> : null}

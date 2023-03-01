@@ -1,11 +1,35 @@
+* {
+  font-family: 'Proxima Nova', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: 'Dunkin Sans', sans-serif;
+}
+
+
 .quick-options {
   max-width: 50%;
   max-height: 50%;
 }
 
-.bg-light-brown{
-  background-color: #e7b377;
+.bg-light-brown {
+  background-color: #e4ab6a;
+  /* background-color: #e24577; */
+  /* border-bottom: 1px solid gray; */
 }
+
+.btn-pink {
+  background-color: #c63663;
+  border-color: #c63663;
+}
+
+.btn-pink:hover {
+  background-color: #db4172;
+  border-color: #db4172;
+}
+
+
 
 
 

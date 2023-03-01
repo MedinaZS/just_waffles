@@ -154,13 +154,13 @@ const Home = ({ waffles, setWaffles }) => {
 
     return (
         // <div className='text-center mx-5'>
-        <Container className='text-center'>
+        <Container className='text-center mt-5'>
 
-            <p className='fs-3 my-3'>QUICK OPTIONS</p>
+            <h2 className='mb-4'>QUICK OPTIONS</h2>
 
-            <Row xs={1} md={3} >
+            <Row>
 
-                <Col className='mb-3'>
+                <Col xs={12} md={4} className='mb-3'>
                     <Card border='success'>
                         <Card.Header as={'h5'} >NEW ORDER</Card.Header>
                         <Card.Body>
@@ -171,20 +171,20 @@ const Home = ({ waffles, setWaffles }) => {
                     </Card>
                 </Col>
 
-                <Col className='mb-3'>
+                <Col xs={12} md={4} className='mb-3'>
                     <Card border='warning'>
-                        <Card.Header as={'h5'}>RE-ORDER MY FAVE</Card.Header>
+                        <Card.Header as={'h5'}>RE-ORDER MY FAV</Card.Header>
                         <Card.Body>
                             <Card.Img style={{ maxWidth: '50%' }} variant='top' src="./favorite.png" alt="new" />
                             <Card.Subtitle className='my-3 text-muted'>Re-order pre selected fav order</Card.Subtitle>
                             <div className="d-grid">
-                                <Button variant="warning" onClick={obtainFavoriteOrder}>RE-ORDER MY FAVE</Button>
+                                <Button variant="warning" onClick={obtainFavoriteOrder}>RE-ORDER MY FAV</Button>
                             </div>
                         </Card.Body>
                     </Card>
                 </Col>
 
-                <Col className='mb-3'>
+                <Col xs={12} md={4} className='mb-3'>
                     <Card border='primary'>
                         <Card.Header as={'h5'}>SURPRISE ME</Card.Header>
                         <Card.Body>
@@ -204,7 +204,7 @@ const Home = ({ waffles, setWaffles }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Re order my favorite <i className="bi bi-exclamation-triangle-fill"></i></Modal.Title>
                 </Modal.Header>
-                <Modal.Body>You don't have any favorite order. Please select one in your account tab.</Modal.Body>
+                <Modal.Body>You don't have any favorite order. Please select one in your account tab. If you don't have orders yet make one first.</Modal.Body>
                 <Modal.Footer>
                     {/* Al cerrar navegar a la pestaña account */}
                     <Button variant="secondary" onClick={() => { navigate(APP_ROUTES.ACCOUNT) }}>Ok</Button>

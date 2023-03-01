@@ -34,10 +34,10 @@ const NavigationBar = ({ waffles }) => {
             <Container fluid>
 
                 <Navbar.Brand href='/'>
-                    <span className='d-flex align-items-center fs-2 h1' >
-                        JUST WAFFLES
+                    <div className='d-flex align-items-center' >
+                        <h1>JustWaffles</h1>
                         <img src="./waffle.png" alt="waffle" width={40} height={40} className={"ms-3"} />
-                    </span>
+                    </div>
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -46,7 +46,7 @@ const NavigationBar = ({ waffles }) => {
 
                     {(getTokenFromLocalStorage()) //Si esta logeado
                         ? (
-                            <Nav variant="tabs" >
+                            <Nav variant="pils" >
                                 <Nav.Item>
                                     <NavLink to={'/'} className="nav-link">Home</NavLink>
                                 </Nav.Item>
@@ -60,15 +60,16 @@ const NavigationBar = ({ waffles }) => {
                                     <NavLink to={'/account'} className="nav-link">Account</NavLink>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Button className="nav-link" onClick={logout}>Logout</Button>
+                                    <Button className="nav-link btn-pink" onClick={logout}>Logout</Button>
                                 </Nav.Item>
                             </Nav>
                         )
                         : (
                             <Nav>
                                 <Nav.Item >
-                                    {(location === APP_ROUTES.REGISTER) && <NavLink to={APP_ROUTES.LOGIN} className="nav-link">Already Have an Account? Login</NavLink>}
-                                    {(location === APP_ROUTES.LOGIN) && <NavLink to={'/register'} className="nav-link">Don't have an Account? Register</NavLink>}
+                                    {(location === APP_ROUTES.REGISTER) && <NavLink to={APP_ROUTES.LOGIN} className="btn btn-primary btn-pink">Already Have an Account? Login</NavLink>}
+
+                                    {(location === APP_ROUTES.LOGIN) && <NavLink to={'/register'} className="btn btn-primary btn-pink">Don't have an Account? Register</NavLink>}
                                 </Nav.Item>
                             </Nav>
                         )}
