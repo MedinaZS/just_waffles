@@ -30,9 +30,11 @@ module.exports.registerUser = async (req, res) => {
     // }
 
     User.findOne({ email: req.body.email }) //find if email exits
-        .then(user => {
+        .then(userFind => {
 
-            if (!user) {
+            console.log(userFind);
+
+            if (!userFind) {
                 // Crear el nuevo usuario
                 User.create(req.body)
                     .then(newUser => {

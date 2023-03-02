@@ -92,14 +92,14 @@ const Order = ({ waffles, setWaffles }) => {
                 <div className='text-center'>
                     <Image src='check.png' width={'200'}></Image>
                     <h3 className='mt-5'>Your order has been confirmed</h3>
-                    <Link className='btn btn-primary btn-lg mt-5' to={APP_ROUTES.HOME} >Back to Home</Link>
+                    <Link className='btn btn-primary btn-pink btn-lg mt-5' to={APP_ROUTES.HOME} >Back to Home</Link>
                 </div>
             )}
 
             {/*Si el pedido no fue confirmado  */}
             {!confirmOrder && (
                 <>
-                    <p className='fs-3 text-center'>YOUR ORDER</p>
+                    <h2 className='text-center mb-4'>YOUR ORDER</h2>
 
                     <Form onSubmit={onSubmitHandler}>
 
@@ -114,17 +114,17 @@ const Order = ({ waffles, setWaffles }) => {
                         <h4 className='mt-4'>Detail</h4>
                         <hr />
 
-                        <Table striped bordered size='sm' >
+                        <Table striped bordered size='sm' className='text-center' >
                             <thead>
                                 <tr>
                                     <th>Qty</th>
                                     <th>Size</th>
                                     <th>Dough Type</th>
-                                    <th>Toppigs</th>
+                                    <th>Toppings</th>
                                     <th>Price</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='text-start'>
                                 {waffles && waffles.map((waffle, index) => {
                                     return (
                                         <tr key={index}>
@@ -136,7 +136,7 @@ const Order = ({ waffles, setWaffles }) => {
                                                     (<span key={index}>{topping + ". "}</span>))}
                                                 {waffle.toppings.length === 0 && 'No toppings'}
                                             </td>
-                                            <td>{numberFormat(waffle.price)}</td>
+                                            <td className='text-end'>{numberFormat(waffle.price)}</td>
                                         </tr>)
                                 })}
                             </tbody>

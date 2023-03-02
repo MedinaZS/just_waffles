@@ -59,7 +59,7 @@ const Register = () => {
                 navigate(APP_ROUTES.HOME);
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 setErrors(err.response.data.errors);
             });
     }
@@ -78,14 +78,14 @@ const Register = () => {
                                 <Form.Group>
                                     <Form.Label>First Name:</Form.Label>
                                     <Form.Control type="text" placeholder='Enter first name' onChange={(e) => setFirstName(e.target.value)} />
-                                    {errors.firstName && <p className='text-danger'> {errors.firstName.message}</p>}
+                                    {errors.firstName && <span className='text-danger'> {errors.firstName.message}</span>}
                                 </Form.Group>
                             </Col>
                             <Col sm={12} md={6}>
                                 <Form.Group>
                                     <Form.Label>Last Name:</Form.Label>
                                     <Form.Control type="text" placeholder='Enter last name' onChange={(e) => setLastName(e.target.value)} />
-                                    {errors.lastName && <p className='text-danger offset-md-4'> {errors.lastName.message}</p>}
+                                    {errors.lastName && <span className='text-danger offset-md-4'> {errors.lastName.message}</span>}
                                 </Form.Group>
                             </Col>
                         </Row>

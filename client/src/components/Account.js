@@ -89,13 +89,13 @@ const Account = () => {
     }
 
     const deleteAccount = () => {
-        console.log("Delete", user);
-        console.log(API_ROUTES.DELETE_USER + user._id);
+        // console.log("Delete", user);
+        // console.log(API_ROUTES.DELETE_USER + user._id);
 
 
         axios.delete(API_ROUTES.DELETE_USER + user._id, { withCredentials: true, credentials: 'include' })
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 // Eliminar token de almacenamiento
                 removeTokenFromLocalStorage();
                 // Redigirir al login 
@@ -233,7 +233,7 @@ const Account = () => {
                     </Row>
 
                     <div className='d-grid'>
-                        <Button type='submit' variant='success' >UPDATE</Button>
+                        <Button type='submit' variant='success' >UPDATE MY PROFILE</Button>
                     </div>
                 </Form>
             </Col>

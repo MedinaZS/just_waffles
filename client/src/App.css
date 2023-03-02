@@ -7,6 +7,10 @@ h2 {
   font-family: 'Dunkin Sans', sans-serif;
 }
 
+body{
+  height: 100%;
+}
+
 
 .quick-options {
   max-width: 50%;
@@ -28,6 +32,18 @@ h2 {
   background-color: #db4172;
   border-color: #db4172;
 }
+
+.navbar-nav .nav-link:hover{
+  background-color: #d1924b;
+  color: white;
+}
+
+.navbar-nav .nav-link.active{
+  background-color: antiquewhite;
+  color: black;
+}
+
+
 
 
 

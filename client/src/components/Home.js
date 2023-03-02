@@ -154,7 +154,7 @@ const Home = ({ waffles, setWaffles }) => {
 
     return (
         // <div className='text-center mx-5'>
-        <Container className='text-center mt-5'>
+        <Container className='text-center pt-5'>
 
             <h2 className='mb-4'>QUICK OPTIONS</h2>
 
@@ -204,7 +204,7 @@ const Home = ({ waffles, setWaffles }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Re order my favorite <i className="bi bi-exclamation-triangle-fill"></i></Modal.Title>
                 </Modal.Header>
-                <Modal.Body>You don't have any favorite order. Please select one in your account tab. If you don't have orders yet make one first.</Modal.Body>
+                <Modal.Body>You don't have any favorite order. Please select one in your account tab. If you don't have any orders yet make one first.</Modal.Body>
                 <Modal.Footer>
                     {/* Al cerrar navegar a la pestaña account */}
                     <Button variant="secondary" onClick={() => { navigate(APP_ROUTES.ACCOUNT) }}>Ok</Button>
@@ -212,7 +212,7 @@ const Home = ({ waffles, setWaffles }) => {
             </Modal>
 
             {/* Modal want to checkout */}
-            <Modal show={showModalCheckout} onHide={() => setShowModalCheckout(false)} centered >
+            <Modal show={showModalCheckout} onHide={() => setShowModalCheckout(false)} centered backdrop="static" >
                 <Modal.Header closeButton>
                     <Modal.Title>Random waffle</Modal.Title>
                 </Modal.Header>

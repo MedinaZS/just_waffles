@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 
 
@@ -30,53 +31,56 @@ const NavigationBar = ({ waffles }) => {
     }
 
     return (
-        <Navbar expand='md' className='bg-light-brown'>
-            <Container fluid>
-
-                <Navbar.Brand href='/'>
-                    <div className='d-flex align-items-center' >
-                        <h1>JustWaffles</h1>
-                        <img src="./waffle.png" alt="waffle" width={40} height={40} className={"ms-3"} />
-                    </div>
-                </Navbar.Brand>
-
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-                <Navbar.Collapse className="justify-content-end">
-
-                    {(getTokenFromLocalStorage()) //Si esta logeado
-                        ? (
-                            <Nav variant="pils" >
-                                <Nav.Item>
-                                    <NavLink to={'/'} className="nav-link">Home</NavLink>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <NavLink to={'/craft-a-waffle'} className="nav-link">Craft a waffle</NavLink>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <NavLink to={'/order'} className={"nav-link " + (waffles.length === 0 ? "disabled" : "")} >Order({waffles.length})</NavLink>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <NavLink to={'/account'} className="nav-link">Account</NavLink>
-                                </Nav.Item>
-                                <Nav.Item>
-                                    <Button className="nav-link btn-pink" onClick={logout}>Logout</Button>
-                                </Nav.Item>
-                            </Nav>
-                        )
-                        : (
-                            <Nav>
-                                <Nav.Item >
-                                    {(location === APP_ROUTES.REGISTER) && <NavLink to={APP_ROUTES.LOGIN} className="btn btn-primary btn-pink">Already Have an Account? Login</NavLink>}
-
-                                    {(location === APP_ROUTES.LOGIN) && <NavLink to={'/register'} className="btn btn-primary btn-pink">Don't have an Account? Register</NavLink>}
-                                </Nav.Item>
-                            </Nav>
-                        )}
-
-                </Navbar.Collapse>
-            </Container >
-        </Navbar >
+        <header>
+            <Navbar expand='md' className='bg-light-brown' >
+                <Container fluid>
+            
+                    <Navbar.Brand href='/'>
+                        <div className='d-flex align-items-center' >
+                            <h1>JustWaffles</h1>
+                            <img src="./waffle.png" alt="waffle" width={40} height={40} className={"ms-3"} />
+                        </div>
+                    </Navbar.Brand>
+            
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            
+                    <Navbar.Collapse className="justify-content-end">
+            
+                        {(getTokenFromLocalStorage()) //Si esta logeado
+                            ? (
+                                <Nav variant="pills" >
+                                    <Nav.Item className='me-1'>
+                                        <NavLink to={'/'} className="nav-link">Home</NavLink>
+                                    </Nav.Item>
+                                    <Nav.Item className='me-1'>
+                                        <NavLink to={'/craft-a-waffle'} className="nav-link">Craft a waffle</NavLink>
+                                    </Nav.Item>
+                                    <Nav.Item className='me-1'>
+                                        <NavLink to={'/order'} className={"nav-link " + (waffles.length === 0 ? "disabled" : "")} >Order( {waffles.length} )</NavLink>
+                                    </Nav.Item>
+                                    <Nav.Item className='me-1'>
+                                        <NavLink to={'/account'} className="nav-link">Account</NavLink>
+                                    </Nav.Item>
+            
+                                    <Nav.Item className='me-1'>
+                                        <Button className="btn-pink text-white" onClick={logout}>Logout</Button>
+                                    </Nav.Item>
+                                </Nav>
+                            )
+                            : (
+                                <Nav>
+                                    <Nav.Item >
+                                        {(location === APP_ROUTES.REGISTER) && <NavLink to={APP_ROUTES.LOGIN} className="btn btn-primary btn-pink">Already Have an Account? Login</NavLink>}
+            
+                                        {(location === APP_ROUTES.LOGIN) && <NavLink to={'/register'} className="btn btn-primary btn-pink">Don't have an Account? Register</NavLink>}
+                                    </Nav.Item>
+                                </Nav>
+                            )}
+            
+                    </Navbar.Collapse>
+                </Container >
+            </Navbar >
+        </header>
     )
 }
 

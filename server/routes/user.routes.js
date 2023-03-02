@@ -8,5 +8,5 @@ module.exports = (app) => {
     app.get('/api/user/auth',authenticate, Controller.getUserWithToken);
     app.get('/api/user/logout',authenticate, Controller.logoutUser);
     app.put('/api/user/edit', authenticate, Controller.update);
-    app.delete('/api/user/delete',authenticate, Controller.delete);
+    app.delete('/api/user/delete/:id',authenticate, Controller.delete);
 }

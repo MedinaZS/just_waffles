@@ -106,9 +106,10 @@ const CraftAWaffle = ({ waffles, setWaffles }) => {
     }
 
     return (
-        <Container className='m-3 mx-auto'>
+        <Container className='m-3 mt-5 mx-auto'>
 
-            <p className='fs-3 text-center'>CRAFT-A-WAFFLE</p>
+            <h2 className='text-center mb-4'>CRAFT-A-WAFFLE</h2>
+
             <Form onSubmit={onSubmitHandler}>
 
                 {/* Size, doughType, qty */}

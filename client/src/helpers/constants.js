@@ -30,7 +30,7 @@ export const WAFFLE_OPTIONS = {
 
     SIZES: ["Small", "Large"],
 
-    DOUGH_TYPE: ["Vainilla", "Chocolate", "Cinnamon", "Potato", "Cheese", "Cassava", "Sweet Potato"],
+    DOUGH_TYPE: ["Vanilla", "Chocolate", "Cinnamon", "Potato", "Cheese", "Cassava", "Sweet Potato"],
     // TOPPINGS_DULCES : [{"Chocolate chips", "Mantequilla de mani", "Nutella", "Dulce de leche"}],
 
     TOPPINGS: {
